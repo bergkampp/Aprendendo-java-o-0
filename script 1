@@ -1,0 +1,70 @@
+import java.util.Scanner;
+public class Main3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Olá bem vindo ao banco central Java.");
+        String NomeCadastro = "";
+        int senhaCadastro = 0;
+        double saldo = 30000.0;
+        boolean cadastro = false;
+        int opcao = -1;
+        while (opcao != 0) {
+            System.out.println("1 - Cadastrar");
+            System.out.println("2 - Listar");
+            System.out.println("0 - Sair");
+            opcao = sc.nextInt();
+            if (opcao == 1) {
+                System.out.println("Digite o seu nome para o cadastro.");
+                NomeCadastro = sc.next();
+                System.out.println("Digite a senha");
+                senhaCadastro = sc.nextInt();
+                System.out.println("Senha criada com sucesso");
+                cadastro = true;
+            } else if (opcao == 2) {
+                if (!cadastro) {
+                    System.out.println("nenhum usuario encontrado.");
+                }
+                boolean acesso = false;
+                System.out.println("Olá seja bem-vindo ao login do banco, por favor digite o seu nome.");
+                String nomeDigitado = sc.next();
+                if (nomeDigitado.equals(NomeCadastro)) {
+                    System.out.println("Usuario encontrado, digite a senha.");
+                    int senhaDigita = sc.nextInt();
+                    if (senhaDigita == senhaCadastro) {
+                        acesso = true;
+                        System.out.println("Seja bem vindo, oque o senhor quer fazer?");
+                        int opcao2 = -1;
+                        while (opcao2 != 0) {
+                            System.out.println("1 - Ver saldo");
+                            System.out.println("2 - Depositar");
+                            System.out.println("3 - Sacar");
+                            opcao2 = sc.nextInt();
+                            if (opcao2 == 1) {
+                                System.out.println("Você possui 30000 reais.");
+                            } else if (opcao2 == 2) {
+                                System.out.println("Quanto você quer depositar? ");
+                                int valor = sc.nextInt();
+                                saldo = saldo + valor;
+                                System.out.println("Saldo atual: "+saldo);
+                            } else if (opcao2 == 3) {
+                                System.out.println("Quanto você quer sacar?");
+                                int saque = sc.nextInt();
+                                saldo = saldo - saque;
+                                System.out.println("saldo sacado, agora seu valor é: " +saldo);
+                            } else {
+                                System.out.println("opção invalida.");
+                            }
+                        }
+                    } else {
+                        System.out.println("Senha invalida");
+                    }
+                } else {
+                    System.out.println("Nome invalido.");
+                }
+            } else if (opcao ==0) {
+                System.out.println("Encerrando.");
+                break;
+            }
+        }
+    }
+}
